@@ -13,6 +13,7 @@
     <h1>澎湃组件 <span>脚本市场</span></h1>
     <p>用户 JavaScript 自定义澎湃 OS 桌面小组件。所有脚本都是单文件 JS + 资源文件夹，安装后可在应用内编辑、在「变量」页配置。</p>
     <nav class="hero-links">
+      <a href="studio/" title="网页版小部件设计工具：左边写脚本、右边实时预览">设计工具</a>
       <a href="https://github.com/lswlc33/HyperWidgetMarket" target="_blank" rel="noopener">GitHub 仓库</a>
       <a href="https://github.com/lswlc33/HyperWidgetMarket/blob/main/README.md" target="_blank" rel="noopener">投稿指南</a>
       <a href="#install">安装方式</a>
@@ -45,6 +46,17 @@
         （没有资源则不用建文件夹）。应用需要「所有文件访问」授权才能读取公共目录。</li>
     </ol>
     <p class="note">脚本以 Rhino 引擎执行，能力与自建脚本相同（可申请 shell / 文件 / 网络）。请只安装你信任的来源，安装前在详情页确认它的能力标签。</p>
+  </section>
+
+  <section class="install" id="studio">
+    <h2>写脚本：小部件设计工具</h2>
+    <ol>
+      <li>打开 <a href="studio/"><b>设计工具</b></a>（纯网页，Chrome / Edge）——左边写 JavaScript，右边立刻按真实画布渲染出小组件的样子。</li>
+      <li>「打开文件夹」选手机同步过来的 <code>Download/HyperWidget/</code>（或任意脚本目录）：脚本列表、同名资源文件夹、图片缩略图都在左栏，改完 <code>Ctrl+S</code> 直接写回文件。</li>
+      <li>右下能造数据：电量、时间、设备型号、脚本参数（<code>ctx.env</code>）、全局变量（<code>ctx.global</code>）、接口与命令的 mock。</li>
+    </ol>
+    <p class="note">令牌、19 个图标与组件库 <code>ui.*</code> 都来自应用本体（工具里显示「主题快照」即表示用的是随仓库提交的那份）。
+      预览是浏览器渲染的近似值：<b>版式结论以真机为准</b>，工具会主动提示"内容超出安全区""节点不支持 gravity"这类真机上才会暴露的问题。</p>
   </section>
 </main>
 

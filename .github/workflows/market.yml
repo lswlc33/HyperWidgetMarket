@@ -16,6 +16,13 @@ jobs:
           node-version: 20
       - name: 校验脚本大文件夹
         run: node tools/build-index.mjs --check
+      # 设计工具（studio/）：快照结构、引用完整性、不许泄本地路径
+      # ⚠️ 这里查不了"快照是否与私有的 App 仓库同步"——CI 读不到那个仓库，
+      #    那条靠本地 `node tools/sync-studio-assets.mjs --check` 与界面上的来源版本号。
+      - name: studio 完整性检查
+        run: node tools/check-studio.mjs
+      - name: studio 语义层自测（62 项，组件库走快照）
+        run: node studio/test-engine.js
 
   build-index:
     # 只有 main 上的 push 才重建索引并回提交；索引内容没变时不产生 diff

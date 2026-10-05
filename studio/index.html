@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-hw-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小部件设计工具</title>
+<script>
+  // 页面脚本自身的加载/解析错误先记下来：任何一个 js 文件挂掉都不该白屏，
+  // app.js 启动时会检查这个数组并把原因显示出来。
+  window.__hwErrors = [];
+  window.addEventListener("error", function (e) {
+    var where = e.filename ? "（" + e.filename.split("/").pop() + ":" + e.lineno + "）" : "";
+    window.__hwErrors.push((e.message || "资源加载失败") + where);
+  });
+</script>
+<link rel="stylesheet" href="studio.css">
+</head>
+<body>
+
+<!-- 顶栏：文件夹 / 脚本 / 档位 / 主题 / 保存 -->
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◇</span>
+    <span class="title">小部件设计工具</span>
+    <a class="btn ghost small-btn" href="../" title="回到脚本市场首页">脚本市场</a>
+  </div>
+
+  <div class="group">
+    <button id="btn-open" class="btn primary">打开文件夹</button>
+    <input id="file-fallback" type="file" webkitdirectory directory multiple hidden>
+    <span id="ws-name" class="muted">未打开文件夹（当前为示例脚本）</span>
+    <button id="btn-new" class="btn ghost" hidden>新建脚本</button>
+  </div>
+
+  <div class="group grow">
+    <select id="script-select" class="select" title="选择要编辑的脚本"></select>
+    <span id="dirty-dot" class="dot" hidden title="有未保存的修改"></span>
+    <button id="btn-save" class="btn">保存</button>
+    <span class="muted mono" id="meta-line"></span>
+  </div>
+
+  <div class="group">
+    <div class="seg" id="size-seg" title="画布档位（SIZES 里声明过的才显示）"></div>
+    <button id="btn-theme" class="btn ghost" title="切换浅色/深色（等价宿主切换深色模式）">☾</button>
+    <label class="chk" title="停止输入 400ms 后自动重跑脚本">
+      <input id="chk-auto" type="checkbox" checked> 实时
+    </label>
+    <button id="btn-run" class="btn" title="Ctrl+Enter">运行</button>
+  </div>
+</header>
+
+<div id="banner" class="banner" hidden></div>
+
+<main class="layout">
+  <!-- 左：脚本 + 资源 -->
+  <aside class="pane left">
+    <section class="sect">
+      <h3>脚本</h3>
+      <ul id="script-list" class="script-list"></ul>
+    </section>
+    <section class="sect grow">
+      <h3>
+        资源
+        <button id="btn-res-refresh" class="mini" title="重新扫描资源文件夹">↻</button>
+      </h3>
+      <div id="res-note" class="muted small"></div>
+      <div id="res-grid" class="res-grid"></div>
+    </section>
+  </aside>
+
+  <!-- 中：编辑器 -->
+  <section class="pane mid">
+    <div class="pane-head">
+      <span id="ed-title" class="muted small">编辑器</span>
+      <span class="grow"></span>
+      <label class="chk" title="关闭自动换行（代码区横向滚动）"><input id="chk-wrap" type="checkbox" checked> 换行</label>
+    </div>
+    <div id="editor" class="editor"></div>
+    <div class="issues">
+      <div class="issues-head">
+        <span>问题</span>
+        <span id="issues-count" class="badge" hidden>0</span>
+      </div>
+      <ul id="issues-list" class="issues-list"><li class="muted">—</li></ul>
+    </div>
+  </section>
+
+  <!-- 右：预览 + 面板 -->
+  <section class="pane right">
+    <div class="pane-head">
+      <span id="preview-title" class="muted small">预览</span>
+      <span class="grow"></span>
+      <span id="canvas-meta" class="muted small"></span>
+    </div>
+    <div id="canvas-stage" class="canvas-stage">
+      <div id="canvas-scaler" class="canvas-scaler"></div>
+    </div>
+    <div id="status-bar" class="status-bar"></div>
+
+    <div class="tabs" id="tabs">
+      <button data-tab="vars" class="tab active">变量</button>
+      <button data-tab="data" class="tab">数据</button>
+      <button data-tab="console" class="tab">控制台</button>
+      <button data-tab="diag" class="tab">诊断</button>
+    </div>
+    <div class="tabpanes">
+      <div class="tabpane active" data-pane="vars"><div id="pane-vars"></div></div>
+      <div class="tabpane" data-pane="data"><div id="pane-data"></div></div>
+      <div class="tabpane" data-pane="console"><div id="pane-console" class="console"></div></div>
+      <div class="tabpane" data-pane="diag"><ul id="pane-diag" class="issues-list"></ul></div>
+    </div>
+  </section>
+</main>
+
+<!-- 资源灯箱 -->
+<div id="lightbox" class="modal" hidden>
+  <div class="modal-box">
+    <div class="modal-head">
+      <span id="lb-title" class="mono"></span>
+      <span class="grow"></span>
+      <button id="lb-close" class="btn ghost">关闭</button>
+    </div>
+    <div class="modal-body"><div id="lb-body"></div></div>
+    <div class="modal-foot">
+      <span id="lb-meta" class="muted small"></span>
+      <span class="grow"></span>
+      <button id="lb-insert" class="btn primary">插入到编辑器</button>
+      <button id="lb-copy" class="btn">复制路径</button>
+    </div>
+  </div>
+</div>
+
+<div id="overlay" class="overlay" hidden>
+  <div class="overlay-box">
+    <h2 id="ov-title">需要本地服务器</h2>
+    <p id="ov-text"></p>
+    <button id="ov-retry" class="btn primary">重试</button>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="js/engine.js"></script>
+<!-- 主题快照：线上读不到私有的 App 仓库，令牌/图标/组件库由它提供（tools/sync-studio-assets.mjs 生成） -->
+<script src="js/theme.generated.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/render.js"></script>
+<script src="js/workspace.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
