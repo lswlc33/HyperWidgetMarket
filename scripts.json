@@ -1,0 +1,293 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-05T09:33:21Z",
+  "repository": "https://github.com/lswlc33/HyperWidgetMarket",
+  "scripts": [
+    {
+      "id": "clock",
+      "name": "时钟",
+      "description": "走字时钟、日期与时间进度",
+      "version": "2.0.0",
+      "author": "澎湃组件",
+      "sizes": [
+        "2x2",
+        "4x2",
+        "4x4"
+      ],
+      "minEngine": null,
+      "updatedAt": "2026-10-05",
+      "path": "scripts/clock",
+      "entry": "clock.js",
+      "jsBytes": 4720,
+      "jsSha256": "617fa39502388b9b2d5b17bc28f2f7699a59a42012a39af0309d5371b2ad0ff6",
+      "assets": [],
+      "previews": [
+        {
+          "size": "2x2",
+          "dark": false,
+          "path": "preview/2x2.png",
+          "bytes": 15852
+        },
+        {
+          "size": "2x2",
+          "dark": true,
+          "path": "preview/2x2-dark.png",
+          "bytes": 16572
+        },
+        {
+          "size": "4x2",
+          "dark": false,
+          "path": "preview/4x2.png",
+          "bytes": 40912
+        },
+        {
+          "size": "4x2",
+          "dark": true,
+          "path": "preview/4x2-dark.png",
+          "bytes": 41933
+        },
+        {
+          "size": "4x4",
+          "dark": false,
+          "path": "preview/4x4.png",
+          "bytes": 58361
+        },
+        {
+          "size": "4x4",
+          "dark": true,
+          "path": "preview/4x4-dark.png",
+          "bytes": 60239
+        }
+      ],
+      "official": true,
+      "category": "时钟",
+      "tags": [
+        "时钟",
+        "日期",
+        "进度"
+      ],
+      "license": "MIT",
+      "changelog": "2.0.0：改用布局树 + 组件库重写，2×2 / 4×2 / 4×4 各出不同布局",
+      "uses": []
+    },
+    {
+      "id": "image-demo",
+      "name": "图片卡片示例",
+      "description": "演示静态资源：image 节点的 path 指向 assets/ 文件夹",
+      "version": "1.0.0",
+      "author": "澎湃组件",
+      "sizes": [
+        "2x2",
+        "4x2",
+        "4x4"
+      ],
+      "minEngine": null,
+      "updatedAt": "2026-10-05",
+      "path": "scripts/image-demo",
+      "entry": "image-demo.js",
+      "jsBytes": 2803,
+      "jsSha256": "64f8dfe8e8415e42351339f45ec6bd906c11e8781113de8160073334dc62941d",
+      "assets": [
+        {
+          "path": "assets/icons/badge.png",
+          "bytes": 1667,
+          "sha256": "8531a6ba82c17810fbf624c508ab9d2d03ddb54e58f1b9705aaa2be94f11a2f0"
+        },
+        {
+          "path": "assets/logo.png",
+          "bytes": 5998,
+          "sha256": "99ff71426a8ced5acbe5be4f4df50b5c97dc57f8f4a2490c603460dc98f3c75b"
+        }
+      ],
+      "previews": [
+        {
+          "size": "2x2",
+          "dark": false,
+          "path": "preview/2x2.png",
+          "bytes": 33262
+        },
+        {
+          "size": "2x2",
+          "dark": true,
+          "path": "preview/2x2-dark.png",
+          "bytes": 34131
+        },
+        {
+          "size": "4x2",
+          "dark": false,
+          "path": "preview/4x2.png",
+          "bytes": 50269
+        },
+        {
+          "size": "4x2",
+          "dark": true,
+          "path": "preview/4x2-dark.png",
+          "bytes": 51318
+        },
+        {
+          "size": "4x4",
+          "dark": false,
+          "path": "preview/4x4.png",
+          "bytes": 104992
+        },
+        {
+          "size": "4x4",
+          "dark": true,
+          "path": "preview/4x4-dark.png",
+          "bytes": 107429
+        }
+      ],
+      "official": true,
+      "category": "示例",
+      "tags": [
+        "示例",
+        "图片",
+        "资源"
+      ],
+      "license": "MIT",
+      "changelog": "1.0.0：首个带 assets/ 静态资源的示例（含子目录）",
+      "uses": []
+    },
+    {
+      "id": "system-status",
+      "name": "系统状态",
+      "description": "日期、时钟与整机状态的磁贴仪表盘",
+      "version": "4.2.0",
+      "author": "澎湃组件",
+      "sizes": [
+        "2x2",
+        "4x2",
+        "4x4"
+      ],
+      "minEngine": null,
+      "updatedAt": "2026-10-05",
+      "path": "scripts/system-status",
+      "entry": "system-status.js",
+      "jsBytes": 14052,
+      "jsSha256": "db7df1cc9a226d613860839fac907d5dc23ccff7b436026ba0f7902890790cc8",
+      "assets": [],
+      "previews": [
+        {
+          "size": "2x2",
+          "dark": false,
+          "path": "preview/2x2.png",
+          "bytes": 32538
+        },
+        {
+          "size": "2x2",
+          "dark": true,
+          "path": "preview/2x2-dark.png",
+          "bytes": 33270
+        },
+        {
+          "size": "4x2",
+          "dark": false,
+          "path": "preview/4x2.png",
+          "bytes": 85795
+        },
+        {
+          "size": "4x2",
+          "dark": true,
+          "path": "preview/4x2-dark.png",
+          "bytes": 87111
+        },
+        {
+          "size": "4x4",
+          "dark": false,
+          "path": "preview/4x4.png",
+          "bytes": 117632
+        },
+        {
+          "size": "4x4",
+          "dark": true,
+          "path": "preview/4x4-dark.png",
+          "bytes": 120346
+        }
+      ],
+      "official": true,
+      "category": "系统",
+      "tags": [
+        "系统",
+        "电量",
+        "内存",
+        "CPU",
+        "磁贴"
+      ],
+      "license": "MIT",
+      "changelog": "4.2.0：磁贴仪表盘重做，4×4 增加至 15 块信息，磁贴尺寸按画布自适应",
+      "uses": [
+        "shell",
+        "file"
+      ]
+    },
+    {
+      "id": "ui-gallery",
+      "name": "组件库",
+      "description": "内置组件库 ui.* 的用法示例",
+      "version": "2.0.0",
+      "author": "澎湃组件",
+      "sizes": [
+        "2x2",
+        "4x2",
+        "4x4"
+      ],
+      "minEngine": null,
+      "updatedAt": "2026-10-05",
+      "path": "scripts/ui-gallery",
+      "entry": "ui-gallery.js",
+      "jsBytes": 4244,
+      "jsSha256": "e7831a0bede9922e942aaed901b1636ab0fec490c6f0975c2d2508d875fb1a53",
+      "assets": [],
+      "previews": [
+        {
+          "size": "2x2",
+          "dark": false,
+          "path": "preview/2x2.png",
+          "bytes": 14138
+        },
+        {
+          "size": "2x2",
+          "dark": true,
+          "path": "preview/2x2-dark.png",
+          "bytes": 14851
+        },
+        {
+          "size": "4x2",
+          "dark": false,
+          "path": "preview/4x2.png",
+          "bytes": 40085
+        },
+        {
+          "size": "4x2",
+          "dark": true,
+          "path": "preview/4x2-dark.png",
+          "bytes": 40093
+        },
+        {
+          "size": "4x4",
+          "dark": false,
+          "path": "preview/4x4.png",
+          "bytes": 74228
+        },
+        {
+          "size": "4x4",
+          "dark": true,
+          "path": "preview/4x4-dark.png",
+          "bytes": 76481
+        }
+      ],
+      "official": true,
+      "category": "示例",
+      "tags": [
+        "组件库",
+        "示例",
+        "教程"
+      ],
+      "license": "MIT",
+      "changelog": "2.0.0：跟随组件库 1.2 更新示例，4×2 精简为三段内容",
+      "uses": [
+        "file"
+      ]
+    }
+  ]
+}

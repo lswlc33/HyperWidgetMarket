@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>澎湃组件 · 脚本市场</title>
+<meta name="description" content="澎湃组件（HyperWidget）脚本市场：浏览、搜索与安装小组件 JavaScript 脚本。">
+<link rel="stylesheet" href="web/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <h1>澎湃组件 <span>脚本市场</span></h1>
+    <p>用户 JavaScript 自定义澎湃 OS 桌面小组件。所有脚本都是单文件 JS + 资源文件夹，安装后可在应用内编辑、在「变量」页配置。</p>
+    <nav class="hero-links">
+      <a href="https://github.com/lswlc33/HyperWidgetMarket" target="_blank" rel="noopener">GitHub 仓库</a>
+      <a href="https://github.com/lswlc33/HyperWidgetMarket/blob/main/README.md" target="_blank" rel="noopener">投稿指南</a>
+      <a href="#install">安装方式</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="toolbar">
+    <input id="search" type="search" placeholder="搜索名称、描述、作者或标签…" autocomplete="off">
+    <select id="sort" aria-label="排序">
+      <option value="updated">最近更新</option>
+      <option value="name">按名称</option>
+      <option value="version">按版本</option>
+    </select>
+  </section>
+  <section class="filters" id="categoryFilters" aria-label="分类筛选"></section>
+  <section class="filters" id="sizeFilters" aria-label="尺寸筛选"></section>
+  <p class="count" id="count"></p>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>没有匹配的脚本</p>
+
+  <section class="install" id="install">
+    <h2>怎么安装</h2>
+    <ol>
+      <li><b>推荐：应用内市场页</b>——打开「澎湃组件」→ 底栏「市场」→ 找到脚本 → 安装。带资源的脚本会连 <code>assets/</code> 一起装到
+        <code>Download/HyperWidget/</code>，并自动出现在脚本列表里。</li>
+      <li><b>手动安装</b>——下载脚本的 <code>&lt;id&gt;.js</code> 放到 <code>Download/HyperWidget/</code>；
+        如果脚本带静态资源，再把它的 <code>assets/</code> 文件夹放到 <code>Download/HyperWidget/&lt;id&gt;/assets/</code>
+        （没有资源则不用建文件夹）。应用需要「所有文件访问」授权才能读取公共目录。</li>
+    </ol>
+    <p class="note">脚本以 Rhino 引擎执行，能力与自建脚本相同（可申请 shell / 文件 / 网络）。请只安装你信任的来源，安装前在详情页确认它的能力标签。</p>
+  </section>
+</main>
+
+<footer>
+  <p>澎湃组件 · HyperWidget —— 第三方 LSPosed 小组件方案，与小米公司无关。</p>
+</footer>
+
+<dialog id="detail" aria-label="脚本详情">
+  <div class="detail-head">
+    <h3 id="dTitle"></h3>
+    <button class="close" id="dClose" aria-label="关闭">✕</button>
+  </div>
+  <div class="detail-body" id="dBody"></div>
+</dialog>
+
+<script src="web/app.js"></script>
+</body>
+</html>

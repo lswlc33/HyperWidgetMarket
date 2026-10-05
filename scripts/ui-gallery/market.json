@@ -1,0 +1,7 @@
+{
+  "official": true,
+  "category": "示例",
+  "tags": ["组件库", "示例", "教程"],
+  "license": "MIT",
+  "changelog": "2.0.0：跟随组件库 1.2 更新示例，4×2 精简为三段内容"
+}

@@ -1,0 +1,9 @@
+# 文本文件统一 LF：scripts.json 里的 jsSha256 按文件字节计算，
+# 检出时的换行转换会让 Windows 本地生成的结果与 CI（Linux）不一致。
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.bmp binary

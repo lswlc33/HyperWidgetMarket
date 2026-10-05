@@ -1,0 +1,7 @@
+{
+  "official": true,
+  "category": "示例",
+  "tags": ["示例", "图片", "资源"],
+  "license": "MIT",
+  "changelog": "1.0.0：首个带 assets/ 静态资源的示例（含子目录）"
+}

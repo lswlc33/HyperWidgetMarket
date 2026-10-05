@@ -1,0 +1,46 @@
+name: market
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    # PR 与 push 都跑：结构 / 命名 / 元数据 / 体积 / 格式的机械校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 校验脚本大文件夹
+        run: node tools/build-index.mjs --check
+
+  build-index:
+    # 只有 main 上的 push 才重建索引并回提交；索引内容没变时不产生 diff
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 重建 scripts.json
+        run: node tools/build-index.mjs
+      - name: 回提交（有变化才提交）
+        run: |
+          if git diff --quiet -- scripts.json; then
+            echo "索引无变化，跳过提交"
+            exit 0
+          fi
+          git config user.name "market-bot"
+          git config user.email "market-bot@users.noreply.github.com"
+          git add scripts.json
+          git commit -m "chore: 重建市场索引 [skip ci]"
+          git push

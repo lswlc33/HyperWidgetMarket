@@ -1,0 +1,7 @@
+{
+  "official": true,
+  "category": "时钟",
+  "tags": ["时钟", "日期", "进度"],
+  "license": "MIT",
+  "changelog": "2.0.0：改用布局树 + 组件库重写，2×2 / 4×2 / 4×4 各出不同布局"
+}
