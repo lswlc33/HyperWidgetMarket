@@ -44,16 +44,22 @@ console.log('== 正常取数 ==');
       if (o.url.includes('/vehicle/list')) return OK([{ vinNo: 'VINTEST01', vehicleName: '测试车' }]);
       if (o.url.includes('widget')) return OK({ bmssoc: 73, hmiRidableMile: 58, vehicleName: '测试车' });
       if (o.url.includes('battery')) return OK({ chargeStateStr: '未充电' });
-      if (o.url.includes('tire')) return OK({});
-      if (o.url.includes('ride')) return OK({});
+      if (o.url.toLowerCase().includes('tire')) return OK({ realTimeData: [
+        { sensorPosition: 1, tirePressure: 2.25, warningType: 0 },
+        { sensorPosition: 2, tirePressure: 2.30, warningType: 0 }] });
+      if (o.url.toLowerCase().includes('ride')) return OK({ rideMileageDay: 12.4, lastRidingTimeUnitMinute: 35 });
       if (o.url.includes('integral')) return OK({ integralTotal: 1280 });
       return OK({});
     },
   });
   if (spec.title === '测试车' && /73%/.test(spec.big) && /58km/.test(spec.big)) ok('标题/大数字映射正确：' + spec.big);
   else bad('映射异常：' + JSON.stringify({ title: spec.title, big: spec.big }));
-  if (spec.rows.length === 4 && spec.rows[2][1] === '1280 分') ok('行数据正确：' + JSON.stringify(spec.rows));
-  else bad('行数据异常：' + JSON.stringify(spec.rows));
+  // 4×2 经典模板只显示 3 行；数据更新时间挪到右上 chip
+  if (spec.rows.length === 3 && spec.rows[2][1] === '1280 分' && /12.4km/.test(spec.rows[1][1])) {
+    ok('行数据正确：' + JSON.stringify(spec.rows));
+  } else bad('行数据异常：' + JSON.stringify(spec.rows));
+  if (/未充电/.test(spec.chip || '')) ok('右上角 chip = 充电状态 + 数据更新时间：' + spec.chip);
+  else bad('chip 异常：' + spec.chip);
   if (spec.progress && spec.progress.value === 73) ok('进度条 73/100');
   else bad('进度条异常：' + JSON.stringify(spec.progress));
   if (calls.filter((u) => u.includes('http')).length >= 5) ok('一次渲染完成 ' + calls.filter((u) => u.includes('http')).length + ' 个接口调用');
