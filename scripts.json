@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generatedAt": "2026-10-05T09:33:21Z",
+  "generatedAt": "2026-10-06T02:19:54Z",
   "repository": "https://github.com/lswlc33/HyperWidgetMarket",
   "scripts": [
     {
@@ -69,6 +69,67 @@
       "license": "MIT",
       "changelog": "2.0.0：改用布局树 + 组件库重写，2×2 / 4×2 / 4×4 各出不同布局",
       "uses": []
+    },
+    {
+      "id": "hkrpg-widget",
+      "name": "崩坏：星穹铁道",
+      "description": "开拓力 / 每日实训 / 活动剩余时间（官方小组件复刻）",
+      "version": "1.1.0",
+      "author": "lswlc",
+      "sizes": [
+        "4x2",
+        "4x4"
+      ],
+      "minEngine": "1.1",
+      "updatedAt": "2026-10-05",
+      "path": "scripts/hkrpg-widget",
+      "entry": "hkrpg-widget.js",
+      "jsBytes": 29104,
+      "jsSha256": "df81a1cdb2e6aa7019daec629bcf4759c46d913baf1dde7e1bec6f17f30f054d",
+      "assets": [
+        {
+          "path": "assets/bg_art.webp",
+          "bytes": 225352,
+          "sha256": "021e0fc697af6821df1f165eb9745c4f2e7174b58906fe26cafaf611a53c2b7d"
+        },
+        {
+          "path": "assets/icon_logo.png",
+          "bytes": 2471,
+          "sha256": "f187b3400eebffc973e220c3421150fe104487b50f3571f62a96320cf9435351"
+        },
+        {
+          "path": "assets/icon_stamina.png",
+          "bytes": 15401,
+          "sha256": "1a7490a7aaa3bef3d351cc6d107f6c0be545aff23309105c3fb536e034873639"
+        }
+      ],
+      "previews": [
+        {
+          "size": "4x2",
+          "dark": true,
+          "path": "preview/4x2-dark.webp",
+          "bytes": 35556
+        },
+        {
+          "size": "4x4",
+          "dark": true,
+          "path": "preview/4x4-dark.webp",
+          "bytes": 140954
+        }
+      ],
+      "official": false,
+      "category": "游戏",
+      "tags": [
+        "游戏",
+        "体力",
+        "活动"
+      ],
+      "license": "MIT",
+      "changelog": "1.1.0：4×2 / 4×4 双尺寸共用一份脚本；4×4 背景可换成任意角色卡面（点「换背景」或变量指定）；画稿全分辨率合成、面板边距随行数自适应",
+      "uses": [
+        "http",
+        "httpBinary"
+      ]
     },
     {
       "id": "image-demo",
@@ -287,6 +348,44 @@
       "changelog": "2.0.0：跟随组件库 1.2 更新示例，4×2 精简为三段内容",
       "uses": [
         "file"
+      ]
+    },
+    {
+      "id": "zeeho-scooter",
+      "name": "ZEEHO 车辆",
+      "description": "电动车电量 / 续航 / 胎压 / 骑行 / 积分（只读展示）",
+      "version": "2.0.0",
+      "author": "lswlc",
+      "sizes": [
+        "4x2"
+      ],
+      "minEngine": "1.1",
+      "updatedAt": "2026-10-06",
+      "path": "scripts/zeeho-scooter",
+      "entry": "zeeho-scooter.js",
+      "jsBytes": 21948,
+      "jsSha256": "ecc05086b8045141816f659255a37642a73918e62aa81f8c1d88e0f22199501d",
+      "assets": [],
+      "previews": [
+        {
+          "size": "4x2",
+          "dark": true,
+          "path": "preview/4x2-dark.png",
+          "bytes": 54590
+        }
+      ],
+      "official": false,
+      "category": "电量",
+      "tags": [
+        "车辆",
+        "电量",
+        "续航",
+        "胎压"
+      ],
+      "license": "MIT",
+      "changelog": "2.0.0：精简为只读展示（去掉签到/盲盒/社区任务），只保留 4×2 一档；唯一变量是 token，账号凭据不再写进脚本",
+      "uses": [
+        "http"
       ]
     }
   ]

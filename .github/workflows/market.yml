@@ -16,6 +16,9 @@ jobs:
           node-version: 20
       - name: 校验脚本大文件夹
         run: node tools/build-index.mjs --check
+      # 脚本侧冒烟测试：用 mock ctx 跑 render（不发网络），覆盖取数/节流/未配置 token/401
+      - name: 脚本冒烟测试
+        run: node tools/test-zeeho.js
       # 设计工具（studio/）：快照结构、引用完整性、不许泄本地路径
       # ⚠️ 这里查不了"快照是否与私有的 App 仓库同步"——CI 读不到那个仓库，
       #    那条靠本地 `node tools/sync-studio-assets.mjs --check` 与界面上的来源版本号。

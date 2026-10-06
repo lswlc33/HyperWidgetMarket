@@ -22,7 +22,7 @@ const CHECK_ONLY = process.argv.includes('--check');
 
 const ID_RE = /^[a-z0-9][a-z0-9-]{1,39}$/;
 const RESERVED_IDS = new Set(['assets', 'preview', 'market', 'index', 'tools', 'web', 'scripts']);
-const CATEGORIES = ['时钟', '系统', '电量', '网络', '天气', '效率', '示例', '其他'];
+const CATEGORIES = ['时钟', '系统', '电量', '网络', '天气', '效率', '游戏', '示例', '其他'];
 const SIZES = ['2x2', '4x2', '4x4'];
 const ASSET_EXT = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp'];
 const PREVIEW_EXT = ['.png', '.jpg', '.jpeg', '.webp'];
